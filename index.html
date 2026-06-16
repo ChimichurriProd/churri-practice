@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+  Personal landing page.
+  Single page, four sections, plain HTML + CSS only.
+  Styling lives entirely in style.css so this file stays semantic.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- viewport tag is what makes the page responsive on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Index</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top bar: name on the left, a small marker on the right. No nav menu — one page doesn't need one. -->
+  <header class="topbar">
+    <span class="topbar-name">Your Name</span>
+    <span class="topbar-meta">Index / 2026</span>
+  </header>
+
+  <main>
+
+    <!-- ============================================
+         01 / HERO
+         Big bold tagline, one-line subtitle.
+         The mono label above the headline is the
+         "numbered section" cue from the inspiration.
+         ============================================ -->
+    <section class="section hero" id="hero">
+      <p class="label">01 / Intro</p>
+      <h1 class="hero-title">
+        Building thoughtful<br />things for the screen.
+      </h1>
+      <p class="hero-subtitle">
+        Designer, developer, and quiet observer of details.
+      </p>
+    </section>
+
+    <!-- ============================================
+         02 / ABOUT
+         Short paragraph, max-width constrained for
+         comfortable reading line length.
+         ============================================ -->
+    <section class="section about" id="about">
+      <p class="label">02 / About</p>
+      <h2 class="section-title">A short introduction.</h2>
+      <p class="prose">
+        I work at the intersection of design and engineering, building
+        small, considered tools and visual experiments. My background is
+        in film and software — I like making things that feel cinematic
+        even when they live in a browser tab. Currently based somewhere
+        on a quiet street, available for selected collaborations.
+      </p>
+    </section>
+
+    <!-- ============================================
+         03 / SELECTED WORK
+         Three placeholder cards. Grid is single-column
+         on phone, three-column on desktop (see CSS).
+         ============================================ -->
+    <section class="section work" id="work">
+      <p class="label">03 / Selected work</p>
+      <h2 class="section-title">A few recent things.</h2>
+
+      <div class="project-grid">
+
+        <article class="project">
+          <span class="project-index">01</span>
+          <h3 class="project-title">Northern Light</h3>
+          <p class="project-desc">
+            A short film exploring stillness and the long winter dark.
+          </p>
+          <p class="project-meta">2025 · Direction, edit</p>
+        </article>
+
+        <article class="project">
+          <span class="project-index">02</span>
+          <h3 class="project-title">Field Notes</h3>
+          <p class="project-desc">
+            A reading app that strips writing down to the essentials.
+          </p>
+          <p class="project-meta">2024 · Design, code</p>
+        </article>
+
+        <article class="project">
+          <span class="project-index">03</span>
+          <h3 class="project-title">Quiet Studio</h3>
+          <p class="project-desc">
+            Branding and identity for a small audio mastering studio.
+          </p>
+          <p class="project-meta">2024 · Identity, web</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         04 / CONTACT
+         The big email link is the visual focus.
+         Secondary links sit small and quiet below.
+         ============================================ -->
+    <section class="section contact" id="contact">
+      <p class="label">04 / Contact</p>
+      <h2 class="section-title">Get in touch.</h2>
+      <a class="contact-email" href="mailto:hello@example.com">
+        hello@example.com
+      </a>
+      <ul class="contact-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Are.na</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Your Name</span>
+  </footer>
+
+</body>
+</html>

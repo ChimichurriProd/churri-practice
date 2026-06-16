@@ -1,0 +1,264 @@
+/*
+  style.css
+  All visual styling for the landing page.
+  Organized top-to-bottom: tokens -> reset -> base -> layout -> sections -> responsive.
+*/
+
+
+/* === Design tokens ============================================
+   CSS custom properties so colors and sizes live in one place.
+   To re-skin the site, change values here and the rest updates.
+   ============================================================ */
+:root {
+  /* Colors — near-black background, off-white text. Pure #000 / #fff
+     feels harsh on screens; small offsets are easier on the eye. */
+  --bg:       #0a0a0a;
+  --fg:       #ededed;
+  --muted:    #888888;   /* labels, subtitles, dividers */
+  --accent:   #ffffff;   /* hover state for links */
+  --border:   #1f1f1f;   /* hairline rules between sections */
+
+  /* Spacing rhythm. clamp(min, fluid, max) scales smoothly with
+     viewport width — no extra breakpoints needed. */
+  --section-pad-y: clamp(6rem, 12vw, 10rem);
+  --container-pad-x: clamp(1.5rem, 5vw, 4rem);
+  --container-max: 1200px;
+
+  /* Type scale. The hero uses a very wide clamp range because it's
+     the one element that should feel dramatically different on
+     phone vs desktop. */
+  --fs-hero:    clamp(2.75rem, 9vw, 7rem);
+  --fs-section: clamp(1.75rem, 4vw, 3rem);
+  --fs-body:    1rem;
+  --fs-label:   0.75rem;
+
+  /* Font stacks — system fonts only, no downloads.
+     -apple-system / BlinkMacSystemFont cover Mac and iOS;
+     "Segoe UI" covers Windows; system-ui is the modern fallback. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+
+/* === Reset ====================================================
+   Minimal reset. Box-sizing makes width/padding math predictable.
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* === Base styles ============================================== */
+html {
+  /* Smooth jumps when anchor links are clicked (e.g. #contact). */
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  /* font-smoothing makes light-on-dark type read cleaner on Mac. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  /* Subtle border underline so we control thickness and offset
+     better than the default text-decoration line. */
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--muted);
+}
+
+
+/* === Layout container =========================================
+   Every major block uses this wrapper for consistent gutters.
+   ============================================================ */
+.topbar,
+.section,
+.footer {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad-x);
+}
+
+
+/* === Top bar ================================================== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* === Section base ============================================= */
+.section {
+  padding-top: var(--section-pad-y);
+  padding-bottom: var(--section-pad-y);
+  /* Hairline rule between sections — barely visible, just enough
+     structure. Hide it on the first/last to keep the page clean. */
+  border-top: 1px solid var(--border);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+/* The small numbered monospace label that prefixes each section. */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+
+/* Heading used by About / Work / Contact sections. */
+.section-title {
+  font-size: var(--fs-section);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+
+
+/* === Hero ===================================================== */
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  /* Tight leading so the two lines feel like one block of type. */
+  line-height: 0.95;
+  /* Negative tracking pulls big display type together optically. */
+  letter-spacing: -0.03em;
+  margin-bottom: 2.5rem;
+}
+
+.hero-subtitle {
+  color: var(--muted);
+  font-size: 1.125rem;
+  /* ch unit caps line length around 60 characters — comfortable reading. */
+  max-width: 40ch;
+}
+
+
+/* === About ==================================================== */
+.about .prose {
+  /* Same readable-line-length idea. ch scales with font size, px doesn't. */
+  max-width: 60ch;
+  color: var(--fg);
+}
+
+
+/* === Selected work ============================================ */
+.project-grid {
+  display: grid;
+  /* Single column on phone; the media query flips to 3 on desktop. */
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.project {
+  /* Top hairline gives each card a clear visual anchor. */
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.project-index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.project-desc {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.project-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* === Contact ================================================== */
+.contact-email {
+  display: inline-block;
+  /* A second display-scale clamp — slightly smaller than the hero. */
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 3rem;
+}
+
+.contact-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* === Footer =================================================== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* === Responsive =============================================== */
+/* One breakpoint, only for the layout shift that clamp() can't
+   express: the work grid going from 1 to 3 columns. Everything
+   else (type sizes, paddings) scales fluidly via clamp() above. */
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
